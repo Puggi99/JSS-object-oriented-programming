@@ -66,25 +66,25 @@
 //______________________________________________________________________________________________________________________________________________________________________
 
 // FUNZIONI RIMODELLLATE
-const student1 = new Student('Davide', 'Consigliere', 1989, [4, 6, 7, 4, 6])
-const student2 = new Student('Francesco', 'Badile', 1993, [5, 8, 6, 7, 10]);
-const student3 = new Student('Valentina', 'Cherubini', 2001, [8, 7, 10, 9, 8])
-const teacher = new Teacher('Andrea', 'Asioli', 1978, [student1, student2, student3])
+// const student1 = new Student('Davide', 'Consigliere', 1989, [4, 6, 7, 4, 6])
+// const student2 = new Student('Francesco', 'Badile', 1993, [5, 8, 6, 7, 10]);
+// const student3 = new Student('Valentina', 'Cherubini', 2001, [8, 7, 10, 9, 8])
+// const teacher = new Teacher('Andrea', 'Asioli', 1978, [student1, student2, student3])
 
-console.log(student1)
-console.log(student2)
-console.log(student3)
-console.log(teacher)
-console.log(student1.calculateMean())
-console.log(teacher.findBestStudent())
+// console.log(student1)
+// console.log(student2)
+// console.log(student3)
+// console.log(teacher)
+// console.log(student1.calculateMean())
+// console.log(teacher.findBestStudent())
 
-//______________________________________________________________________________________________________________________________________________________________________
+// //______________________________________________________________________________________________________________________________________________________________________
 
 
 
 // ESERCIZI
 
-1) aggiungere un "toString()" (funzione) a Student e Teacher. 
+// 1) aggiungere un "toString()" (funzione) a Student e Teacher. 
 // PER INSEGNANTE
 // toString(){}
 // NOME: Andrea
@@ -99,4 +99,8 @@ console.log(teacher.findBestStudent())
 // COGNOME CONSIGLIERE
 // ETA': 34
 // MEDIA: 5.4
-2) aggiungere "calculateAge()" a Student e Teacher 
+// 2) aggiungere "calculateAge()" a Student e Teacher 
+
+// console.log(teacher.calculateAge());
+// // console.log(student2.toString());
+// console.log(teacher.toString());
