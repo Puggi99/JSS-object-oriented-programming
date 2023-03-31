@@ -1,106 +1,34 @@
-// E' un modo di scrivere software, molto amato perchè la logica è simile agli altri codici, javascript aveva un modo strano di scrivere i software, alcuni programmatori
-// si son lamentati e ne hanno creato uno che ha praticamente un "velo" su quello nuovo per nascondere quello vecchio
+// LA PROGRAMMAZIONE AD OGGETTI.
+// Quando parlo di OOP parlo di un paradigma, un modo di scrivere un software come tanti altri. 
+// I più famosi paradigmi sono la programmazione ad oggetti, il paradigma di programmazione imperativo e il paradigma funzionale.
+// ================================================================================================================================
 
+// Modelliamo docente e studenti. Un software che gestisce noi come classe. Potremmo farlo tranquillamente con gli oggetti che già conosciamo
+// Inizialmente il codice era fatto con 4 liste (teacher + studente1-2-3) e delle funzioni. Iniziamo a ristrutturare questo codice per un approccio ad oggetti, inizio a creare student.js e teacher.js e mi serve per andare a dividere le funzioni per chi le deve usare.
+// N.B.: Meglio un file per ogni classe piuttosto che un file per più classi
+const student1 = new Student('Davide', 'Consigliere', 1989, [4, 6, 7, 4, 6]); // richiamo il costruttore in student.js, new di Classe, la lista non mi serve più
+const student2 = new Student('Chiara', 'Badile', 1993, [5, 8, 6, 7, 10]);
+const student3 = new Student('Valentina', 'Cherubini', 2001, [8, 7, 10, 9, 8]);
+const student4 = new Student('Simone', 'Maccarone', 2003);
+const teacher = new Teacher ('Andrea', 'Asioli', 1978, [student1, student2, student3]); // Il teacher conosce gli students, array che contiene i nomi delle liste
+// con students e grades nelle liste/costruttori abbiamo creato differenza tra teacher e studentX
+// qui c'era una function calculateMeanOfStudent(student), ma siccome abbiamo il file student.js che deve usarla, possiamo spostarla su student.js. Il codice della funzione è dentro le graffe
+console.log(student2.calculateMean()); // Chiamata della funzione sull'oggetto, come metodo.
+// qui c'era una function FindBestStudentOfTeacher(teacher), ma siccome abbiamo il file teacher.js che deve usarla, possiamo spostarla su teacher.js. Il codice della funzione è dentro le graffe
+console.log(teacher.findBestStudent());
+// COMPITO: Completare le nuove funzioni in student.js e teacher.js
+console.log(teacher.toString());
+console.log(student2.toString()); 
+console.log(student4.toString());  // Stampa studente 4 senza array. Abbiamo aggiunto un if === 0 in calculateMean per fare in modo che ritorni -1 per non arrivare a 0/0 nella funzione
+student2.yob = 2005; // Chiamata setter dove imposto l'anno a 2005
+student2.grades = [10, 10, 10, 10, 10]; // Chiamata senza setter
+console.log(student2.yob); // Chiamata getter su student.js dove mi stampa il yob aggiornato
+console.log(student2.grades); // chiamata getter senza setter, i valori sono rimasti gli stessi
+console.log(student2.toString()); // Ristampa la funzione con la lista di elementi aggiornata dal setter
 
-// MODELLARE
+// Ereditarietà
+// Quando sia teacher che students hanno delle parti di codice uguale (calculateAge), vuol dire che spesso fanno parte di una classe superiore, creiamo person.js con nome, cognome e
+// data di nascita. Ma ora abbiamo 3 volte le funzioni!
 
-// const student1 = {
-//     name: 'Davide',
-//     surname: 'Consigliere',
-//     yob: 1989,
-//     grades: [4,6,7,4,6]
-// }
-
-// const student2 = {
-//     name: 'Francesco',
-//     surname: 'Badile',
-//     yob: 1993,
-//     grades: [5,8,6,7,10]
-// }
-
-// const student3 = {
-//     name: 'Valentina',
-//     surname: 'Cherubini',
-//     yob: 2001,
-//     grades: [8,7,10,9,8]
-// }
-
-// const teacher = {
-//     name: 'Andrea',
-//     surname: 'Asioli',
-//     yob: 1978,
-//     students: [student1,student2,student3]
-// }
-
-
-// function calculateMeanOfStudent(student){
-//    const grades = student.grades;
-//    let sum = 0;
-//    for (let i = 0; i < grades.length; i++) {
-//     const grade = grades[i];
-//     sum += grade;
-//    }
-//    const mean = sum/grades.length;
-//    return mean;
-// }
-
-
-// console.log(calculateMeanOfStudent(student1))
-
-// function findBestStudent(teacher){
-//     const students = teacher.students;
-//     let bestStudent = students[0]
-//     for (let i = 1; i < students.length; i++) {
-//         const actualStudent = students[i];
-//         const bestMean = bestStudent.calculateMean(bestStudent);
-//         const actualMean = actualStudent.calculateMean(actualStudent);
-//         if(actualMean > bestMean){
-//             bestStudent = actualStudent
-//         }
-
-//     }return bestStudent;
-// }
-
-
-
-//______________________________________________________________________________________________________________________________________________________________________
-
-// FUNZIONI RIMODELLLATE
-// const student1 = new Student('Davide', 'Consigliere', 1989, [4, 6, 7, 4, 6])
-// const student2 = new Student('Francesco', 'Badile', 1993, [5, 8, 6, 7, 10]);
-// const student3 = new Student('Valentina', 'Cherubini', 2001, [8, 7, 10, 9, 8])
-// const teacher = new Teacher('Andrea', 'Asioli', 1978, [student1, student2, student3])
-
-// console.log(student1)
-// console.log(student2)
-// console.log(student3)
-// console.log(teacher)
-// console.log(student1.calculateMean())
-// console.log(teacher.findBestStudent())
-
-// //______________________________________________________________________________________________________________________________________________________________________
-
-
-
-// ESERCIZI
-
-// 1) aggiungere un "toString()" (funzione) a Student e Teacher. 
-// PER INSEGNANTE
-// toString(){}
-// NOME: Andrea
-// COGNOME: Asioli
-// ETA': 45
-// MIGLIOR STUDENTE: Valentina Cherubini
-//
-
-// PER STUDENTE
-// toString(){}
-// NOME: DAVIDE
-// COGNOME CONSIGLIERE
-// ETA': 34
-// MEDIA: 5.4
-// 2) aggiungere "calculateAge()" a Student e Teacher 
-
-// console.log(teacher.calculateAge());
-// // console.log(student2.toString());
-// console.log(teacher.toString());
+const vecchietto = new Person('Battista', 'Parodi', 1934);
+console.log(vecchietto.toString());
